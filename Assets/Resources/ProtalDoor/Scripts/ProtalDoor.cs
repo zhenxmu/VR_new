@@ -68,9 +68,9 @@ public class ProtalDoor : MonoBehaviour
         m_TargetPos.rotation = other.transform.rotation;
 
         // 在这里添加180度的旋转
-        Quaternion rotationAdjustment = Quaternion.Euler(0, 180, 0);
+        //Quaternion rotationAdjustment = Quaternion.Euler(0, 180, 0);
         TargetDoor.m_TargetPos.localPosition = m_TargetPos.localPosition;
-        TargetDoor.m_TargetPos.localRotation = m_TargetPos.localRotation * rotationAdjustment;
+        //TargetDoor.m_TargetPos.localRotation = m_TargetPos.localRotation * rotationAdjustment;
       
         CharacterController cc = other.GetComponent<CharacterController>();
         if (cc != null)

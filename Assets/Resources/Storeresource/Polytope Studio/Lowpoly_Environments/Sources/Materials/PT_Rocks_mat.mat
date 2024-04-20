@@ -10,8 +10,8 @@ Material:
   m_Name: PT_Rocks_mat
   m_Shader: {fileID: 4800000, guid: cd18bd550ff6630468660d0150eed511, type: 3}
   m_ShaderKeywords: _ANIMATEDECALEMISSIONONOFF_ON _ANIMATEEMISSIONONOFF_ON _ANIMATEOREEMISSIONONOFF_ON
-    _DECALEMISSIONONOFF_ON _DECALSONOFF_ON _DETAILTEXTUREONOFF1_ON _DETAILTEXTUREONOFF_ON
-    _GRADIENTONOFF_ON _OREEMISSIONONOFF_ON _SNOWNOISEONOFF_ON
+    _DETAILTEXTUREONOFF1_ON _DETAILTEXTUREONOFF_ON _GRADIENTONOFF_ON _OREEMISSIONONOFF_ON
+    _SNOWNOISEONOFF_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -49,14 +49,16 @@ Material:
     - _ANIMATEDECALEMISSIONONOFF: 1
     - _ANIMATEEMISSIONONOFF: 1
     - _ANIMATEOREEMISSIONONOFF: 1
-    - _DECALEMISSIONONOFF: 1
-    - _DECALSONOFF: 1
+    - _AlphaCutoff: 0.5
+    - _DECALEMISSIONONOFF: 0
+    - _DECALSONOFF: 0
     - _DETAILTEXTUREONOFF: 1
     - _DecalEmissionIntensity: 4.44
     - _DecalsOnOff: 1
     - _DetailTextureONOFF: 1
     - _DetailTextureONOFF1: 1
     - _DetailTextureTiling: 0.39
+    - _EnvironmentReflections: 1
     - _Float0: 10
     - _Float2: 0.3
     - _Float5: 0.5
@@ -68,6 +70,7 @@ Material:
     - _GradientPower1: 4.57
     - _OREEMISSIONONOFF: 1
     - _OreEmissionIntensity: 7.23
+    - _ReceiveShadows: 1
     - _SNOWONOFF: 0
     - _Smoothness: 0.321
     - _SnowAmount: 0.215
@@ -77,6 +80,7 @@ Material:
     - _SnowNoiseOnOff: 1
     - _SnowNoiseScale: 4.9
     - _SnowONOFF: 0
+    - _SpecularHighlights: 1
     - _TOPPROJECTIONONOFF: 0
     - _TopProjectionONOFF: 0
     - _TopProjectionTextureCoverage: 0.578
@@ -87,6 +91,7 @@ Material:
     - _Color3: {r: 0.81960785, g: 0.060962733, b: 0, a: 0}
     - _DecakEmissionColor: {r: 0, g: 0.84665537, b: 2.4117067, a: 0}
     - _DecalsColor: {r: 0.008939266, g: 0, b: 1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _GroundColor: {r: 0.26415092, g: 0.23300104, b: 0.23300104, a: 1}
     - _GroundColor1: {r: 0.17009956, g: 0.1484069, b: 0.21698111, a: 1}
     - _OreColor: {r: 2, g: 0.4804064, b: 0, a: 0}
@@ -96,3 +101,4 @@ Material:
     - _TopColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     - _TopColor1: {r: 0.59574103, g: 0.51699895, b: 0.6981132, a: 1}
     - _Vector1: {r: 0.1, g: 1, b: 0.1, a: 0}
+  m_BuildTextureStacks: []

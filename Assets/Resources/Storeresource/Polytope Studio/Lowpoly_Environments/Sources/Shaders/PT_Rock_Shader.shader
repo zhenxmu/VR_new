@@ -12,7 +12,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 		[HDR]_TopColor("Top Color", Color) = (0.4811321,0.4036026,0.2382966,1)
 		[HDR]_GroundColor("Ground Color", Color) = (0.08490568,0.05234205,0.04846032,1)
 		_Gradient("Gradient ", Range( 0 , 1)) = 1
-		_GradientPower("Gradient Power", Range( 0 , 100)) = 1
+		_GradientPower("Gradient Power", Range( 0 , 10)) = 1
 		[Toggle]_WorldObjectGradient("World/Object Gradient", Float) = 1
 		[Toggle(_DECALSONOFF_ON)] _DECALSONOFF("DECALS ON/OFF", Float) = 0
 		[NoScaleOffset]_DecalsTexture("Decals Texture", 2D) = "white" {}
@@ -2738,15 +2738,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				#define ENABLE_TERRAIN_PERPIXEL_NORMAL
 			#endif
 
-			#define ASE_NEEDS_FRAG_WORLD_POSITION
-			#define ASE_NEEDS_FRAG_WORLD_NORMAL
-			#define ASE_NEEDS_FRAG_COLOR
-			#pragma shader_feature_local _SNOWONOFF_ON
-			#pragma shader_feature_local _TOPPROJECTIONONOFF_ON
-			#pragma shader_feature_local _DECALSONOFF_ON
-			#pragma shader_feature_local _DETAILTEXTUREONOFF_ON
-			#pragma shader_feature_local _GRADIENTONOFF_ON
-
+			
 
 			struct VertexInput
 			{
@@ -2755,7 +2747,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				float4 ase_tangent : TANGENT;
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
-				float4 ase_color : COLOR;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -2773,9 +2765,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				#if defined(ASE_NEEDS_FRAG_SCREEN_POSITION)
 				float4 screenPos : TEXCOORD6;
 				#endif
-				float4 ase_texcoord7 : TEXCOORD7;
-				float4 ase_texcoord8 : TEXCOORD8;
-				float4 ase_color : COLOR;
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -2838,70 +2828,11 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				int _PassValue;
 			#endif
 
-			sampler2D _BaseTexture;
-			sampler2D _DetailTexture;
-			sampler2D _DecalsTexture;
-			sampler2D _TopProjectionTexture;
-
+			
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
 
-			inline float4 TriplanarSampling173( sampler2D topTexMap, sampler2D midTexMap, sampler2D botTexMap, float3 worldPos, float3 worldNormal, float falloff, float2 tiling, float3 normalScale, float3 index )
-			{
-				float3 projNormal = ( pow( abs( worldNormal ), falloff ) );
-				projNormal /= ( projNormal.x + projNormal.y + projNormal.z ) + 0.00001;
-				float3 nsign = sign( worldNormal );
-				float negProjNormalY = max( 0, projNormal.y * -nsign.y );
-				projNormal.y = max( 0, projNormal.y * nsign.y );
-				half4 xNorm; half4 yNorm; half4 yNormN; half4 zNorm;
-				xNorm  = tex2D( midTexMap, tiling * worldPos.zy * float2(  nsign.x, 1.0 ) );
-				yNorm  = tex2D( topTexMap, tiling * worldPos.xz * float2(  nsign.y, 1.0 ) );
-				yNormN = tex2D( botTexMap, tiling * worldPos.xz * float2(  nsign.y, 1.0 ) );
-				zNorm  = tex2D( midTexMap, tiling * worldPos.xy * float2( -nsign.z, 1.0 ) );
-				return xNorm * projNormal.x + yNorm * projNormal.y + yNormN * negProjNormalY + zNorm * projNormal.z;
-			}
 			
-			inline float4 TriplanarSampling525( sampler2D topTexMap, float3 worldPos, float3 worldNormal, float falloff, float2 tiling, float3 normalScale, float3 index )
-			{
-				float3 projNormal = ( pow( abs( worldNormal ), falloff ) );
-				projNormal /= ( projNormal.x + projNormal.y + projNormal.z ) + 0.00001;
-				float3 nsign = sign( worldNormal );
-				half4 xNorm; half4 yNorm; half4 zNorm;
-				xNorm = tex2D( topTexMap, tiling * worldPos.zy * float2(  nsign.x, 1.0 ) );
-				yNorm = tex2D( topTexMap, tiling * worldPos.xz * float2(  nsign.y, 1.0 ) );
-				zNorm = tex2D( topTexMap, tiling * worldPos.xy * float2( -nsign.z, 1.0 ) );
-				return xNorm * projNormal.x + yNorm * projNormal.y + zNorm * projNormal.z;
-			}
-			
-			float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float2 mod2D289( float2 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
-			float3 permute( float3 x ) { return mod2D289( ( ( x * 34.0 ) + 1.0 ) * x ); }
-			float snoise( float2 v )
-			{
-				const float4 C = float4( 0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439 );
-				float2 i = floor( v + dot( v, C.yy ) );
-				float2 x0 = v - i + dot( i, C.xx );
-				float2 i1;
-				i1 = ( x0.x > x0.y ) ? float2( 1.0, 0.0 ) : float2( 0.0, 1.0 );
-				float4 x12 = x0.xyxy + C.xxzz;
-				x12.xy -= i1;
-				i = mod2D289( i );
-				float3 p = permute( permute( i.y + float3( 0.0, i1.y, 1.0 ) ) + i.x + float3( 0.0, i1.x, 1.0 ) );
-				float3 m = max( 0.5 - float3( dot( x0, x0 ), dot( x12.xy, x12.xy ), dot( x12.zw, x12.zw ) ), 0.0 );
-				m = m * m;
-				m = m * m;
-				float3 x = 2.0 * frac( p * C.www ) - 1.0;
-				float3 h = abs( x ) - 0.5;
-				float3 ox = floor( x + 0.5 );
-				float3 a0 = x - ox;
-				m *= 1.79284291400159 - 0.85373472095314 * ( a0 * a0 + h * h );
-				float3 g;
-				g.x = a0.x * x0.x + h.x * x0.y;
-				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-				return 130.0 * dot( m, g );
-			}
-			
-
 			VertexOutput VertexFunction( VertexInput v  )
 			{
 				VertexOutput o = (VertexOutput)0;
@@ -2909,10 +2840,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord7.xy = v.texcoord.xy;
-				o.ase_texcoord8 = v.vertex;
-				o.ase_texcoord7.zw = v.texcoord1.xyzw.xy;
-				o.ase_color = v.ase_color;
+				
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
@@ -2984,8 +2912,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				float4 ase_tangent : TANGENT;
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
-				float4 ase_color : COLOR;
-
+				
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -3005,7 +2932,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				o.ase_tangent = v.ase_tangent;
 				o.texcoord = v.texcoord;
 				o.texcoord1 = v.texcoord1;
-				o.ase_color = v.ase_color;
+				
 				return o;
 			}
 
@@ -3047,7 +2974,7 @@ Shader "Polytope Studio/PT_Rock_Shader"
 				o.ase_tangent = patch[0].ase_tangent * bary.x + patch[1].ase_tangent * bary.y + patch[2].ase_tangent * bary.z;
 				o.texcoord = patch[0].texcoord * bary.x + patch[1].texcoord * bary.y + patch[2].texcoord * bary.z;
 				o.texcoord1 = patch[0].texcoord1 * bary.x + patch[1].texcoord1 * bary.y + patch[2].texcoord1 * bary.z;
-				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
+				
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -3113,97 +3040,14 @@ Shader "Polytope Studio/PT_Rock_Shader"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float2 uv_BaseTexture490 = IN.ase_texcoord7.xy;
-				float4 BASETEXTURE498 = tex2D( _BaseTexture, uv_BaseTexture490 );
-				float temp_output_623_0 = ( ( (( _WorldObjectGradient )?( IN.ase_texcoord8.y ):( WorldPosition.y )) + 1.5 ) * _Gradient );
-				float clampResult753 = clamp( temp_output_623_0 , 0.0 , 1.0 );
-				float clampResult627 = clamp( pow( clampResult753 , _GradientPower ) , -1.0 , 1.0 );
-				float4 lerpResult629 = lerp( _GroundColor , _TopColor , clampResult627);
-				float4 Gradient630 = lerpResult629;
-				float4 color644 = IsGammaSpace() ? float4(0.8962264,0.8962264,0.8962264,0) : float4(0.7799658,0.7799658,0.7799658,0);
-				float4 blendOpSrc643 = BASETEXTURE498;
-				float4 blendOpDest643 = color644;
-				#ifdef _GRADIENTONOFF_ON
-				float4 staticSwitch634 = ( Gradient630 * ( saturate(  (( blendOpSrc643 > 0.5 ) ? ( 1.0 - ( 1.0 - 2.0 * ( blendOpSrc643 - 0.5 ) ) * ( 1.0 - blendOpDest643 ) ) : ( 2.0 * blendOpSrc643 * blendOpDest643 ) ) )) );
-				#else
-				float4 staticSwitch634 = BASETEXTURE498;
-				#endif
-				float2 temp_cast_0 = (_DetailTextureTiling).xx;
-				float4 triplanar173 = TriplanarSampling173( _DetailTexture, _DetailTexture, _DetailTexture, WorldPosition, WorldNormal, 1.0, temp_cast_0, float3( 1,1,1 ), float3(0,0,0) );
-				float4 DETAILTEXTUREvar414 = triplanar173;
-				#ifdef _DETAILTEXTUREONOFF_ON
-				float4 staticSwitch543 = ( DETAILTEXTUREvar414 * staticSwitch634 );
-				#else
-				float4 staticSwitch543 = staticSwitch634;
-				#endif
-				float4 decalscolor730 = _DecalsColor;
-				float2 uv1_DecalsTexture495 = IN.ase_texcoord7.zw;
-				float DECALSMASK497 = tex2D( _DecalsTexture, uv1_DecalsTexture495 ).a;
-				float4 lerpResult596 = lerp( staticSwitch543 , decalscolor730 , DECALSMASK497);
-				#ifdef _DECALSONOFF_ON
-				float4 staticSwitch600 = lerpResult596;
-				#else
-				float4 staticSwitch600 = staticSwitch543;
-				#endif
-				float2 temp_cast_4 = (_TopProjectionTextureTiling).xx;
-				float4 triplanar525 = TriplanarSampling525( _TopProjectionTexture, WorldPosition, WorldNormal, 1.0, temp_cast_4, 1.0, 0 );
-				float4 TOPPROJECTION527 = triplanar525;
-				float dotResult524 = dot( WorldNormal , float3(0,1,0) );
-				float clampResult751 = clamp( 0.0 , ( ( dotResult524 * _TopProjectionTextureCoverage ) * 3.0 ) , 1.0 );
-				float saferPower582 = abs( clampResult751 );
-				float clampResult584 = clamp( pow( saferPower582 , 5.0 ) , 0.0 , 1.0 );
-				float TOPPROJECTIONMASK528 = clampResult584;
-				float4 lerpResult555 = lerp( staticSwitch600 , TOPPROJECTION527 , TOPPROJECTIONMASK528);
-				#ifdef _TOPPROJECTIONONOFF_ON
-				float4 staticSwitch557 = lerpResult555;
-				#else
-				float4 staticSwitch557 = staticSwitch600;
-				#endif
-				float4 color205 = IsGammaSpace() ? float4(1,1,1,0) : float4(1,1,1,0);
-				float3 normalizedWorldNormal = normalize( WorldNormal );
-				float dotResult211 = dot( normalizedWorldNormal , float3(0,1,0) );
-				float smoothstepResult552 = smoothstep( 0.0 , _SnowFade , ( (-1.0 + (_SnowCoverage - 0.0) * (1.0 - -1.0) / (1.0 - 0.0)) + dotResult211 ));
-				float4 temp_output_363_0 = ( ( (0.0 + (_SnowAmount - 0.0) * (10.0 - 0.0) / (1.0 - 0.0)) * color205 ) * smoothstepResult552 );
-				float4 transform200 = mul(GetWorldToObjectMatrix(),float4( WorldPosition , 0.0 ));
-				float4 appendResult209 = (float4(transform200.x , transform200.z , 0.0 , 0.0));
-				float simplePerlin2D213 = snoise( appendResult209.xy*_SnowNoiseScale );
-				simplePerlin2D213 = simplePerlin2D213*0.5 + 0.5;
-				float saferPower216 = abs( simplePerlin2D213 );
-				float4 SNOW220 = (( _SnowNoiseOnOff )?( ( pow( saferPower216 , _SnowNoiseContrast ) * temp_output_363_0 ) ):( temp_output_363_0 ));
-				#ifdef _SNOWONOFF_ON
-				float4 staticSwitch545 = ( staticSwitch557 + SNOW220 );
-				#else
-				float4 staticSwitch545 = staticSwitch557;
-				#endif
-				float4 lerpResult607 = lerp( staticSwitch545 , _OreColor , ( 1.0 - IN.ase_color.a ));
-				float4 COLOR539 = lerpResult607;
-				
-				float3 temp_cast_9 = (1.0).xxx;
-				float4 color717 = IsGammaSpace() ? float4(1,1,1,0) : float4(1,1,1,0);
-				float4 color716 = IsGammaSpace() ? float4(0,0,0,0) : float4(0,0,0,0);
-				float4 lerpResult718 = lerp( color717 , color716 , (_TimeParameters.y*0.3 + 0.5));
-				float3 desaturateInitialColor720 = lerpResult718.rgb;
-				float desaturateDot720 = dot( desaturateInitialColor720, float3( 0.299, 0.587, 0.114 ));
-				float3 desaturateVar720 = lerp( desaturateInitialColor720, desaturateDot720.xxx, 1.0 );
-				float4 Decalemission685 = (( _DECALEMISSIONONOFF )?( ( ( float4( ( _DecalEmissionIntensity * (( _ANIMATEDECALEMISSIONONOFF )?( desaturateVar720 ):( temp_cast_9 )) ) , 0.0 ) * _DecakEmissionColor ) * DECALSMASK497 ) ):( float4( 0,0,0,0 ) ));
-				float3 temp_cast_12 = (0.1).xxx;
-				float4 color701 = IsGammaSpace() ? float4(1,1,1,0) : float4(1,1,1,0);
-				float4 color702 = IsGammaSpace() ? float4(0,0,0,0) : float4(0,0,0,0);
-				float4 lerpResult703 = lerp( color701 , color702 , (_TimeParameters.y*0.3 + 0.5));
-				float3 desaturateInitialColor704 = lerpResult703.rgb;
-				float desaturateDot704 = dot( desaturateInitialColor704, float3( 0.299, 0.587, 0.114 ));
-				float3 desaturateVar704 = lerp( desaturateInitialColor704, desaturateDot704.xxx, 1.0 );
-				float4 oreemission684 = (( _OREEMISSIONONOFF )?( ( ( float4( ( _OreEmissionIntensity * (( _ANIMATEOREEMISSIONONOFF )?( desaturateVar704 ):( temp_cast_12 )) ) , 0.0 ) * _OreEmissionColor ) * ( 1.0 - IN.ase_color.a ) ) ):( float4( 0,0,0,0 ) ));
-				
-				float4 color617 = IsGammaSpace() ? float4(1,1,1,0) : float4(1,1,1,0);
 				
 
-				float3 BaseColor = COLOR539.rgb;
+				float3 BaseColor = float3(0.5, 0.5, 0.5);
 				float3 Normal = float3(0, 0, 1);
-				float3 Emission = ( Decalemission685 + oreemission684 ).rgb;
+				float3 Emission = 0;
 				float3 Specular = 0.5;
 				float Metallic = 0;
-				float Smoothness = ( _Smoothness * color617 ).r;
+				float Smoothness = 0.5;
 				float Occlusion = 1;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
@@ -3301,6 +3145,7 @@ Node;AmplifyShaderEditor.ToggleSwitchNode;641;-2881.464,109.3181;Inherit;False;P
 Node;AmplifyShaderEditor.RangedFloatNode;621;-2981.692,412.0216;Float;False;Property;_Gradient;Gradient ;5;0;Create;True;0;0;0;False;0;False;1;0.443;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;736;-2604.904,129.8654;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;623;-2332.163,191.1993;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;624;-2577.677,496.9998;Inherit;False;Property;_GradientPower;Gradient Power;6;0;Create;True;0;0;0;False;0;False;1;1.68;0;10;0;1;FLOAT;0
 Node;AmplifyShaderEditor.ClampOpNode;753;-2297.838,401.3761;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.CommentaryNode;535;-1653.702,1225.264;Inherit;False;884.7478;315.1912;Comment;3;491;490;498;BASE TEXTURE;1,1,1,1;0;0
 Node;AmplifyShaderEditor.PowerNode;755;-2033.943,414.0285;Inherit;False;False;2;0;FLOAT;0;False;1;FLOAT;1;False;1;FLOAT;0
@@ -3447,7 +3292,6 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;749;1151.042,2720.431;Float
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;747;1151.042,2720.431;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;756;1151.042,2780.431;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthNormals;0;6;DepthNormals;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=DepthNormals;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;757;1151.042,2780.431;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;GBuffer;0;7;GBuffer;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;255;False;;255;False;;255;False;;7;False;;1;False;;1;False;;1;False;;7;False;;1;False;;1;False;;1;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalGBuffer;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.RangedFloatNode;624;-2577.677,496.9998;Inherit;False;Property;_GradientPower;Gradient Power;6;0;Create;True;0;0;0;False;0;False;1;1.68;0;100;0;1;FLOAT;0
 WireConnection;641;0;640;2
 WireConnection;641;1;620;2
 WireConnection;736;0;641;0
@@ -3585,4 +3429,4 @@ WireConnection;745;0;412;0
 WireConnection;745;2;690;0
 WireConnection;745;4;614;0
 ASEEND*/
-//CHKSM=4DE2B3084D70EB68BC8E2DF2362CB9C75BA97EE6
+//CHKSM=87FCE26AC4A11C6C96354D6A31180013BCF90529

@@ -1038,7 +1038,6 @@ GameObject:
   - component: {fileID: 3309882858120561051}
   - component: {fileID: 8867372405804473313}
   - component: {fileID: 598000464396489833}
-  - component: {fileID: 7801394670295096893}
   m_Layer: 0
   m_Name: PT_Male_Modular_Free_Pack
   m_TagString: Untagged
@@ -1105,21 +1104,6 @@ MonoBehaviour:
   _portrait: {fileID: 2800000, guid: c3c7882d7f0426141bce18366ce32cad, type: 3}
   _dialogueColor: {r: 1, g: 1, b: 1, a: 1}
   _dialogueOffset: {x: 0, y: 0, z: 0}
---- !u!114 &7801394670295096893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2784561854437792545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf9ea541f4670664cb0cbc3f4ec843f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  dialogueTreeController: {fileID: 0}
-  interactionUI: {fileID: 0}
 --- !u!1 &2898702037118956337
 GameObject:
   m_ObjectHideFlags: 0
