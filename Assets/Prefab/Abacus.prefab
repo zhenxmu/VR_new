@@ -1491,9 +1491,9 @@ MonoBehaviour:
   rightController: {fileID: 0}
   abacusLayer:
     serializedVersion: 2
-    m_Bits: 536870912
+    m_Bits: 0
   backgroundLayer:
     serializedVersion: 2
-    m_Bits: 268435456
+    m_Bits: 0
   triggerDown_Action: {fileID: -6916628651343004944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   triggerUp_Action: {fileID: 9116359347993139774, guid: c348712bda248c246b8c49b3db54643f, type: 3}
