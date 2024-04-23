@@ -15,34 +15,38 @@ public class EquationSolver : MonoBehaviour
     private float upperBound = 4; // 解的上界
 
     void Start()
-    {
-         // 动态初始化按钮上的值
+{
     UpdateButtonValuesRandomly();
     bb.SetVariableValue("success", false);
-
-    // 为按钮添加点击事件监听
+    ShowInitialGuidance(); // 显示初始指导
     buttonUI1.onClick.AddListener(() => OnButtonClicked(buttonUI1));
     buttonUI2.onClick.AddListener(() => OnButtonClicked(buttonUI2));
-    }
+}
 
-    public void OnButtonClicked(Button clickedButton)
+void ShowInitialGuidance()
+{
+    feedbackText.text = "选择一个值来尝试解方程 x^3 - 6x^2 + 11x - 6 = 0。我们的目标是找到一个值，使得方程的结果尽可能接近0。";
+}
+
+public void OnButtonClicked(Button clickedButton)
+{
+    ButtonManagerBasicWithIcon buttonManager = clickedButton.GetComponent<ButtonManagerBasicWithIcon>();
+    float value = float.Parse(buttonManager.buttonText);
+    float result = CalculateEquation(value);
+
+    if (Mathf.Abs(result) < tolerance)
     {
-        ButtonManagerBasicWithIcon buttonManager = clickedButton.GetComponent<ButtonManagerBasicWithIcon>();
-        float value = float.Parse(buttonManager.buttonText);
-        float result = CalculateEquation(value);
-
-        if (Mathf.Abs(result) < tolerance)
-        {
-            feedbackText.text = "成功！接近0。";
-            successPanel.SetActive(true); // 显示成功的UI元素
-            bb.SetVariableValue("success",true);
-        }
-        else
-        {
-            AdjustBounds(value, result);
-            UpdateButtonValuesBasedOnBounds(buttonUI1, buttonUI2);
-        }
+        feedbackText.text = "成功！你找到了一个接近0的解。这说明你选择的值是方程的一个有效解。";
+        successPanel.SetActive(true); // 显示成功的UI元素
+        bb.SetVariableValue("success", true);
     }
+    else
+    {
+        feedbackText.text = $"你选择的值导致的结果是 {result:F2}。这个结果还不够接近0，让我们继续尝试。";
+        AdjustBounds(value, result);
+        UpdateButtonValuesBasedOnBounds(buttonUI1, buttonUI2);
+    }
+}
 
     float CalculateEquation(float x)
     {
