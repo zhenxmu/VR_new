@@ -36,13 +36,21 @@ public void OnButtonClicked(Button clickedButton)
 
     if (Mathf.Abs(result) < tolerance)
     {
-        feedbackText.text = "成功！你找到了一个接近0的解。这说明你选择的值是方程的一个有效解。";
+        feedbackText.text = "成功！你找到了一个接近0的解";
         successPanel.SetActive(true); // 显示成功的UI元素
         bb.SetVariableValue("success", true);
     }
     else
     {
-        feedbackText.text = $"你选择的值导致的结果是 {result:F2}。这个结果还不够接近0，让我们继续尝试。";
+        // 根据result的正负给出偏大或偏小的提示
+        if (result > 0)
+        {
+            feedbackText.text = "你选择的值偏大了，让我们尝试一个更小的值。";
+        }
+        else
+        {
+            feedbackText.text = "你选择的值偏小了，让我们尝试一个更大的值。";
+        }
         AdjustBounds(value, result);
         UpdateButtonValuesBasedOnBounds(buttonUI1, buttonUI2);
     }
