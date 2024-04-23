@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: GlobalVolumeFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  _baseProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  _baseProfile: {fileID: 11400000, guid: a107eaf417d84d04b966057ab8b17ae0, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
