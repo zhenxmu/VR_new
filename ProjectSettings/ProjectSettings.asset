@@ -263,7 +263,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.XRstudy.VRproject
-    Standalone: com.unity.template.urp-sample
+    Standalone: com.XRstudy.VRproject
     iPhone: com.unity.template.urp-sample
   buildNumber:
     Standalone: 0
