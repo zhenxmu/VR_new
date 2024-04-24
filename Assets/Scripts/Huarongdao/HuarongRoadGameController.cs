@@ -147,6 +147,15 @@ public class HuarongRoadGameController : MonoBehaviour
         // 计算垂直方向的夹角
         float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, Vector3.right), Vector3.ProjectOnPlane(playerToNew, Vector3.right), Vector3.right);
 
+        // 当前游戏物体的缩放值
+        float scale = 0.2f;
+        // 当前游戏物体的旋转值
+        // Quaternion rotation = Quaternion.Euler(0, 52.242f, 0);
+        // 计算向左移动的位移向量
+        // Vector3 displacement = rotation * Vector3.left * 1f * scale;
+
+        Vector3 myLeft = new Vector3(0.61232768f, 0f, -0.79060408f);
+        Vector3 myRight = new Vector3(-0.61232768f, 0f, 0.79060408f);
 
         // 判断水平方向夹角和垂直方向夹角的大小关系来确定相对位置
         Debug.Log("Mathf.Abs(angleHorizontal)=" + Mathf.Abs(angleHorizontal) + ", Mathf.Abs(angleVertical)=" + Mathf.Abs(angleVertical));
@@ -157,7 +166,7 @@ public class HuarongRoadGameController : MonoBehaviour
             {
                 if(MoveAllow(chessPiece, 0, 1))
                 {
-                    moveFinalPosition = chessPiece.transform.position + Vector3.right; // 在玩家视角的右边
+                    moveFinalPosition = chessPiece.transform.position + myRight * scale; // 在玩家视角的右边
                     isMoving = true;
                 }
 
@@ -166,7 +175,7 @@ public class HuarongRoadGameController : MonoBehaviour
             {
                 if (MoveAllow(chessPiece, 0, -1))
                 {
-                    moveFinalPosition = chessPiece.transform.position + Vector3.left; // 在玩家视角的左边
+                    moveFinalPosition = chessPiece.transform.position + myLeft * scale; // 在玩家视角的左边
                     isMoving = true;
                 }
                     
@@ -179,7 +188,7 @@ public class HuarongRoadGameController : MonoBehaviour
                 Debug.Log(chessPiece.name+"下移1格");
                 if (MoveAllow(chessPiece, -1, 0))
                 {
-                    moveFinalPosition = chessPiece.transform.position + Vector3.down; // 在玩家视角的下边
+                    moveFinalPosition = chessPiece.transform.position + Vector3.down * scale; // 在玩家视角的下边
                     isMoving = true;
                 }
                     
@@ -189,7 +198,7 @@ public class HuarongRoadGameController : MonoBehaviour
                 Debug.Log(chessPiece.name + "上移1格");
                 if (MoveAllow(chessPiece, 1, 0))
                 {
-                    moveFinalPosition = chessPiece.transform.position + Vector3.up; // 在玩家视角的上边
+                    moveFinalPosition = chessPiece.transform.position + Vector3.up * scale; // 在玩家视角的上边
                     isMoving = true;
                 }   
             }
@@ -228,6 +237,7 @@ public class HuarongRoadGameController : MonoBehaviour
         float value;
         if(deviceRight.TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out value) && !value.Equals(0)) 
         {
+            Debug.Log("trigger is pressed.");
             isPressed = true;
         }
        
