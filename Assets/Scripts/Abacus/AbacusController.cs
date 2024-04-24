@@ -31,6 +31,7 @@ public class AbacusController : MonoBehaviour
     private bool isMoving = false;
     private bool isPressed;
     private float moveSpeed = 1.3f;
+    private float scale = 0.08f;
 
     private string fivePattern = @"^Five_\d+_\d+$";
     private string onePattern = @"^One_\d+_\d+$";
@@ -137,8 +138,10 @@ public class AbacusController : MonoBehaviour
         // 计算玩家位置到新位置的向量
         Vector3 playerToNew = newPosition - playerPosition;
 
+        Vector3 myRight = new Vector3(0.20599924f, 0f, -0.97855216f);
+
         // 计算垂直方向的夹角
-        float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, Vector3.right), Vector3.ProjectOnPlane(playerToNew, Vector3.right), Vector3.right);
+        float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, myRight), Vector3.ProjectOnPlane(playerToNew, myRight), myRight);
 
         if (angleVertical > 0 && abacusMoveAllowed == -1)// 在玩家视角的下边
         {
@@ -159,7 +162,7 @@ public class AbacusController : MonoBehaviour
 
             Debug.Log(abacus.name + "下移1格");
             moveFinalPosition = abacus.transform.position;
-            moveFinalPosition.y += deltaYPosition; 
+            moveFinalPosition.y += deltaYPosition * scale; 
             isMoving = true;
         }
         if(angleVertical < 0 && abacusMoveAllowed == 1)// 在玩家视角的上边
@@ -181,7 +184,7 @@ public class AbacusController : MonoBehaviour
 
             Debug.Log(abacus.name + "上移1格");
             moveFinalPosition = abacus.transform.position;
-            moveFinalPosition.y += deltaYPosition; 
+            moveFinalPosition.y += deltaYPosition * scale; 
             isMoving = true;
         }
     }

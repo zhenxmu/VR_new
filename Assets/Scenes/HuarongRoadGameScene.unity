@@ -215,6 +215,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda8f02eab155cd46a7b97c92fcfd077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &160824350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.6033535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_Name
+      value: XR Device Simulator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1 &324911085
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,9 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 467405331}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &467405334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,9 +673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 487390213}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &487390216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 664289151}
+  - component: {fileID: 664289152}
   m_Layer: 0
   m_Name: HuarongRoad
   m_TagString: Untagged
@@ -864,6 +916,27 @@ Transform:
   - {fileID: 1923295710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664289152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664289150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000927e5cf329584ea3bf7058ee55bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightController: {fileID: 0}
+  chessPieceLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  chessBoardLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  triggerDown_Action: {fileID: 0}
+  triggerUp_Action: {fileID: 0}
 --- !u!1 &707415092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,9 +1158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 774774983}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &774774989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,9 +1440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 933454358}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &933454361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,9 +1687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 935359347}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &935359350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1988,9 +2052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 1145586654}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &1145586657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2238,9 +2299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 1241409574}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &1241409577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2488,9 +2546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 1252131704}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &1252131707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3244,9 +3299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 1758936832}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &1758936835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4146,15 +4198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45608821da88ad43b964dfed8c863b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightController: {fileID: 2064942399}
-  chessPieceLayer:
-    serializedVersion: 2
-    m_Bits: 2147483648
-  chessBoardLayer:
-    serializedVersion: 2
-    m_Bits: 1073741824
-  triggerDown_Action: {fileID: -6916628651343004944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  triggerUp_Action: {fileID: 9116359347993139774, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &2029676586
 GameObject:
   m_ObjectHideFlags: 0
@@ -4905,9 +4948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea2df23c7cf1c64e990934396f07a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessObject: {fileID: 2119023657}
-  white: {fileID: 2100000, guid: a2216ab8cffb56e4b9bb012b23062dca, type: 2}
-  blue: {fileID: 2100000, guid: 9a5103bb2528b9f4aa2fa81a7490c55b, type: 2}
 --- !u!114 &2119023660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5118,3 +5158,4 @@ SceneRoots:
   - {fileID: 664289151}
   - {fileID: 1402454926}
   - {fileID: 707415096}
+  - {fileID: 160824350}
