@@ -44,13 +44,13 @@ MonoBehaviour:
     m_Bits: 59802111
   m_DefaultStencilState:
     overrideStencilState: 1
-    stencilReference: 1
+    stencilReference: 7
     stencilCompareFunction: 8
     passOperation: 2
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 0
-  m_RenderingMode: 0
+  m_RenderingMode: 2
   m_DepthPrimingMode: 0
   m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
