@@ -31,7 +31,6 @@ public class AbacusController : MonoBehaviour
     private bool isMoving = false;
     private bool isPressed;
     private float moveSpeed = 1.3f;
-    private float scale = 0.08f;
 
     private string fivePattern = @"^Five_\d+_\d+$";
     private string onePattern = @"^One_\d+_\d+$";
@@ -160,7 +159,7 @@ public class AbacusController : MonoBehaviour
 
             Debug.Log(abacus.name + "下移1格");
             moveFinalPosition = abacus.transform.position;
-            moveFinalPosition.y += deltaYPosition * scale; 
+            moveFinalPosition.y += deltaYPosition; 
             isMoving = true;
         }
         if(angleVertical < 0 && abacusMoveAllowed == 1)// 在玩家视角的上边
@@ -182,7 +181,7 @@ public class AbacusController : MonoBehaviour
 
             Debug.Log(abacus.name + "上移1格");
             moveFinalPosition = abacus.transform.position;
-            moveFinalPosition.y += deltaYPosition * scale; 
+            moveFinalPosition.y += deltaYPosition; 
             isMoving = true;
         }
     }
