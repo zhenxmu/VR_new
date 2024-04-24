@@ -166,7 +166,7 @@ public class HuarongRoadGameController : MonoBehaviour
             {
                 if(MoveAllow(chessPiece, 0, 1))
                 {
-                    moveFinalPosition = chessPiece.transform.position + myRight * scale; // 在玩家视角的右边
+                    moveFinalPosition = chessPiece.transform.position + Vector3.right; // 在玩家视角的右边
                     isMoving = true;
                 }
 
@@ -175,7 +175,7 @@ public class HuarongRoadGameController : MonoBehaviour
             {
                 if (MoveAllow(chessPiece, 0, -1))
                 {
-                    moveFinalPosition = chessPiece.transform.position + myLeft * scale; // 在玩家视角的左边
+                    moveFinalPosition = chessPiece.transform.position + Vector3.left; // 在玩家视角的左边
                     isMoving = true;
                 }
                     
@@ -188,7 +188,7 @@ public class HuarongRoadGameController : MonoBehaviour
                 Debug.Log(chessPiece.name+"下移1格");
                 if (MoveAllow(chessPiece, -1, 0))
                 {
-                    moveFinalPosition = chessPiece.transform.position + Vector3.down * scale; // 在玩家视角的下边
+                    moveFinalPosition = chessPiece.transform.position + Vector3.down; // 在玩家视角的下边
                     isMoving = true;
                 }
                     
@@ -198,7 +198,7 @@ public class HuarongRoadGameController : MonoBehaviour
                 Debug.Log(chessPiece.name + "上移1格");
                 if (MoveAllow(chessPiece, 1, 0))
                 {
-                    moveFinalPosition = chessPiece.transform.position + Vector3.up * scale; // 在玩家视角的上边
+                    moveFinalPosition = chessPiece.transform.position + Vector3.up; // 在玩家视角的上边
                     isMoving = true;
                 }   
             }
@@ -237,7 +237,6 @@ public class HuarongRoadGameController : MonoBehaviour
         float value;
         if(deviceRight.TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out value) && !value.Equals(0)) 
         {
-            Debug.Log("trigger is pressed.");
             isPressed = true;
         }
        
