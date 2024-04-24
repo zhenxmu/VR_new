@@ -1,4 +1,4 @@
-1:<question 1 text>:A.<answer A> :B.<answer B> :C.<answer C> :D.<answer D> :1
-2:<question 2 text>:A.<answer A> :B.<answer B> :C.<answer C> :D.<answer D> :1
-3:<question 3 text>:A.<answer A> :B.<answer B> :C.<answer C> :D.<answer D> :1
-4:<question 4 text>:A.<answer A> :B.<answer B> :C.<answer C> :D.<answer D> :1
+1:在中国古代数学中，被称为“圆周率”的概念最早由谁提出？:A.刘徽 :B.王孝通 :C.刘德之 :D.祖冲之 :4
+2:中国古代数学家秦九韶以其哪部著作而闻名？:A.《数书九章》 :B.《海岛算经》 :C.《孙子算经》:D.《四元玉鉴》 :1
+3:下面的几本中国古代数学著作中，最早的是哪一部？:A.《九章算术》 :B.《周髀算经》 :C.《孙子算经》 :D.《算经》 :2
+4:在中国古代数学中，哪个数学家提出了“勾股定理”的一个特例？:A.刘徽 :B.秦九韶 :C.刘德之 :D.祖冲之 :4
