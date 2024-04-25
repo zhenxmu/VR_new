@@ -141,11 +141,14 @@ public class HuarongRoadGameController : MonoBehaviour
         // 计算玩家位置到新位置的向量
         Vector3 playerToNew = newPosition - playerPosition;
 
+        Vector3 myLeft = new Vector3(0.61232768f, 0f, -0.79060408f);
+        Vector3 myRight = new Vector3(-0.61232768f, 0f, 0.79060408f);
+
         // 计算水平方向的夹角
         float angleHorizontal = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, Vector3.up), Vector3.ProjectOnPlane(playerToNew, Vector3.up), Vector3.up);
 
         // 计算垂直方向的夹角
-        float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, Vector3.right), Vector3.ProjectOnPlane(playerToNew, Vector3.right), Vector3.right);
+        float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, myRight), Vector3.ProjectOnPlane(playerToNew, myRight), myRight);
 
         // 当前游戏物体的缩放值
         float scale = 0.2f;
@@ -153,9 +156,6 @@ public class HuarongRoadGameController : MonoBehaviour
         // Quaternion rotation = Quaternion.Euler(0, 52.242f, 0);
         // 计算向左移动的位移向量
         // Vector3 displacement = rotation * Vector3.left * 1f * scale;
-
-        Vector3 myLeft = new Vector3(0.61232768f, 0f, -0.79060408f);
-        Vector3 myRight = new Vector3(-0.61232768f, 0f, 0.79060408f);
 
         // 判断水平方向夹角和垂直方向夹角的大小关系来确定相对位置
         Debug.Log("Mathf.Abs(angleHorizontal)=" + Mathf.Abs(angleHorizontal) + ", Mathf.Abs(angleVertical)=" + Mathf.Abs(angleVertical));
