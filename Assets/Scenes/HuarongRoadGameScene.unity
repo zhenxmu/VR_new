@@ -881,7 +881,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 664289151}
-  - component: {fileID: 664289152}
   m_Layer: 0
   m_Name: HuarongRoad
   m_TagString: Untagged
@@ -916,27 +915,6 @@ Transform:
   - {fileID: 1923295710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &664289152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664289150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000927e5cf329584ea3bf7058ee55bc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightController: {fileID: 0}
-  chessPieceLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  chessBoardLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  triggerDown_Action: {fileID: 0}
-  triggerUp_Action: {fileID: 0}
 --- !u!1 &707415092
 GameObject:
   m_ObjectHideFlags: 0
