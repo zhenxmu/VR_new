@@ -1577,24 +1577,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "TriggerDown",
-                    "type": "Button",
-                    "id": "57553dfc-589b-438a-ba86-7a7c22cef06f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "TriggerUp",
-                    "type": "Button",
-                    "id": "a7c4009c-a1cb-4b6d-a6f6-02df9bb1a4a0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1760,28 +1742,6 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0f9811ba-c96b-4ea4-8784-a2e61c0524fe",
-                    "path": "<XRController>{RightHand}/triggerButton",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TriggerDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e9a33cc1-3705-4614-a496-f54a269a078f",
-                    "path": "<XRController>{RightHand}/triggerButton",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TriggerUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
