@@ -43,10 +43,20 @@ public class AbacusController : MonoBehaviour
 
     void AbacusInit()
     {
-        //创建二维数组  
-        fiveAbacusArray = new int[9][];
-        oneAbacusArray = new int[9][];
-        sum = 0;
+       // 创建交错数组
+    fiveAbacusArray = new int[9][];
+    for (int i = 0; i < 9; i++)
+    {
+        fiveAbacusArray[i] = new int[2]; // 每个子数组有2个元素
+    }
+
+    oneAbacusArray = new int[9][];
+    for (int i = 0; i < 9; i++)
+    {
+        oneAbacusArray[i] = new int[5]; // 每个子数组有5个元素
+    }
+
+    sum = 0;
     }
 
     void XRDeviceinit()
@@ -93,7 +103,7 @@ public class AbacusController : MonoBehaviour
         //对1值算珠
         if (draggableAbacus_Type == 1)
         {
-            if (oneAbacusArray[draggableAbacus_x][draggableAbacus_y] == 0)
+            if (oneAbacusArray[draggableAbacus_x][draggableAbacus_y] == 0)//**
             {
                 if (draggableAbacus_y == 1 || oneAbacusArray[draggableAbacus_x][draggableAbacus_y - 1] == 1)
                 {
@@ -117,7 +127,7 @@ public class AbacusController : MonoBehaviour
 
     void MoveAbacusInit(GameObject abacus, Vector3 playerPosition, Vector3 oldPosition, Vector3 newPosition)
     {
-        int abacusMoveAllowed = AbacusMoveAllowed(abacus);
+        int abacusMoveAllowed = AbacusMoveAllowed(abacus);//*
         // 若该算珠不能合法移动，直接返回
         if (abacusMoveAllowed == 0)
         {
@@ -138,7 +148,7 @@ public class AbacusController : MonoBehaviour
         // 计算玩家位置到新位置的向量
         Vector3 playerToNew = newPosition - playerPosition;
 
-        Vector3 myRight = new Vector3(0.20599924f, 0f, -0.97855216f);
+        Vector3 myRight = new Vector3(0f, 0f, -1f);
 
         // 计算垂直方向的夹角
         float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, myRight), Vector3.ProjectOnPlane(playerToNew, myRight), myRight);
@@ -151,6 +161,7 @@ public class AbacusController : MonoBehaviour
                 fiveAbacusArray[draggableAbacus_x][draggableAbacus_y] = 1;
                 sum += (int)(Math.Pow(10, draggableAbacus_x) * 5);
                 Debug.Log("当前算盘表示值为："+ sum);
+                dashBoard.text = sum.ToString();
             }
 
             if (draggableAbacus_Type == 1)
@@ -158,6 +169,7 @@ public class AbacusController : MonoBehaviour
                 oneAbacusArray[draggableAbacus_x][draggableAbacus_y] = 0;
                 sum -= (int)(Math.Pow(10, draggableAbacus_x) * 1);
                 Debug.Log("当前算盘表示值为：" + sum);
+                dashBoard.text = sum.ToString();
             }
 
             Debug.Log(abacus.name + "下移1格");
@@ -173,6 +185,7 @@ public class AbacusController : MonoBehaviour
                 fiveAbacusArray[draggableAbacus_x][draggableAbacus_y] = 0;
                 sum -= (int)(Math.Pow(10, draggableAbacus_x) * 5);
                 Debug.Log("当前算盘表示值为：" + sum);
+                dashBoard.text = sum.ToString();
             }
 
             if (draggableAbacus_Type == 1)
@@ -180,6 +193,7 @@ public class AbacusController : MonoBehaviour
                 oneAbacusArray[draggableAbacus_x][draggableAbacus_y] = 1;
                 sum += (int)(Math.Pow(10, draggableAbacus_x) * 1);
                 Debug.Log("当前算盘表示值为：" + sum);
+                dashBoard.text = sum.ToString();
             }
 
             Debug.Log(abacus.name + "上移1格");
@@ -235,7 +249,7 @@ public class AbacusController : MonoBehaviour
 
             //若按下trigger选中的为1值算珠物体
             match = Regex.Match(hit.collider.name, onePattern);
-            if (isPressed && Regex.IsMatch(hit.collider.name, onePattern))
+            if (isPressed && match.Success)
             {
                 draggableAbacus_Type = 1;
                 // 提取匹配的数字部分
@@ -257,17 +271,17 @@ public class AbacusController : MonoBehaviour
                 Debug.Log("释放trigger移动物体");
                 isDragging = false;
 
-                if (Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit1, Mathf.Infinity, abacusLayer))
+                if (Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit1, Mathf.Infinity, backgroundLayer))
                 {
                     dragEndPosition = hit1.point;
-                    MoveAbacusInit(draggableAbacus, rightController.position, dragStartPosition, dragEndPosition);
+                    MoveAbacusInit(draggableAbacus, rightController.position, dragStartPosition, dragEndPosition);//**
                 }
             }
         }
 
         if (isMoving)
         {
-            dashBoard.text = sum.ToString();
+            
             MoveUpdate(draggableAbacus);
         }
     }
