@@ -35,6 +35,30 @@ public class VideoPlayerControl : MonoBehaviour
 
 
     }
+    public void OnHovereEnterd()
+    {
+        Debug.Log("看击");
+        if(!isplaying)
+        {
+            PlayVideo();
+             isplaying=!isplaying;
+        }
+       
+
+
+    }
+    public void OnHovereExisted()
+    {
+        Debug.Log("离开看击");
+        if(isplaying)
+        {
+           StopVideo();
+            isplaying=!isplaying;
+        }
+        
+
+
+    }
     private void PlayVideo()
     {
         myVideoPlayer.gameObject.SetActive(true);
