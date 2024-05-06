@@ -33,8 +33,8 @@ public class AbacusController : MonoBehaviour
     private float moveSpeed = 1.3f;
     private float scale = 0.08f;
 
-    private string fivePattern = @"^Five_\d+_\d+$";
-    private string onePattern = @"^One_\d+_\d+$";
+    private string fivePattern = @"^Five_(\d)+_(\d)+$";
+    private string onePattern = @"^One_(\d)+_(\d)+$";
 
     public InputActionReference triggerDown_Action;
     public InputActionReference triggerUp_Action;
@@ -88,6 +88,7 @@ public class AbacusController : MonoBehaviour
                     */
                     return -1;
                 }
+                Debug.Log(abacus.name + "不允许移动/1");
                 return 0;
             }
             if (fiveAbacusArray[draggableAbacus_x][draggableAbacus_y] == 1)
@@ -96,6 +97,7 @@ public class AbacusController : MonoBehaviour
                 {
                     return 1;
                 }
+                Debug.Log(abacus.name + "不允许移动/2");
                 return 0;
             }
         }
@@ -109,6 +111,7 @@ public class AbacusController : MonoBehaviour
                 {
                     return 1;
                 }
+                Debug.Log(abacus.name + "不允许移动/3");
                 return 0;
             }
             if (oneAbacusArray[draggableAbacus_x][draggableAbacus_y] == 1)
@@ -117,6 +120,7 @@ public class AbacusController : MonoBehaviour
                 {
                     return -1;
                 }
+                Debug.Log(abacus.name + "不允许移动/4");
                 return 0;
             }
         }
@@ -233,9 +237,11 @@ public class AbacusController : MonoBehaviour
         if (!isMoving && !isDragging && Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit, Mathf.Infinity, abacusLayer))
         {
             //若按下trigger选中的为5值算珠物体
+            //Debug.Log("hit.collider.name="+hit.collider.name);
             Match match = Regex.Match(hit.collider.name, fivePattern);
             if (isPressed && match.Success)
             {
+                Debug.Log("匹配5值算珠"+hit.collider.name);
                 draggableAbacus_Type = 5;
                 // 提取匹配的数字部分
                 string xStr = match.Groups[1].Value;
@@ -243,7 +249,8 @@ public class AbacusController : MonoBehaviour
                 // 将提取的字符串转换为整数
                 int.TryParse(xStr, out draggableAbacus_x);
                 int.TryParse(yStr, out draggableAbacus_y);
-
+                Debug.Log("xStr="+xStr+",yStr="+yStr);
+                Debug.Log("draggableAbacus_x="+draggableAbacus_x+",draggableAbacus_y="+draggableAbacus_y);
                 draggableAbacusInit(hit.collider);
             }
 
@@ -251,6 +258,7 @@ public class AbacusController : MonoBehaviour
             match = Regex.Match(hit.collider.name, onePattern);
             if (isPressed && match.Success)
             {
+                Debug.Log("匹配1值算珠:"+hit.collider.name);
                 draggableAbacus_Type = 1;
                 // 提取匹配的数字部分
                 string xStr = match.Groups[1].Value;
@@ -258,7 +266,8 @@ public class AbacusController : MonoBehaviour
                 // 将提取的字符串转换为整数
                 int.TryParse(xStr, out draggableAbacus_x);
                 int.TryParse(yStr, out draggableAbacus_y);
-
+                Debug.Log("xStr="+xStr+",yStr="+yStr);
+                Debug.Log("draggableAbacus_x="+draggableAbacus_x+",draggableAbacus_y="+draggableAbacus_y);
                 draggableAbacusInit(hit.collider);
             }
         }
@@ -268,7 +277,7 @@ public class AbacusController : MonoBehaviour
             //释放trigger移动物体
             if (!isPressed)
             {
-                Debug.Log("释放trigger移动物体");
+                //Debug.Log("释放trigger移动物体");
                 isDragging = false;
 
                 if (Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit1, Mathf.Infinity, backgroundLayer))
