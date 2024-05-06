@@ -33,8 +33,8 @@ public class AbacusController : MonoBehaviour
     private float moveSpeed = 1.3f;
     private float scale = 0.08f;
 
-    private string fivePattern = @"^Five_\d+_\d+$";
-    private string onePattern = @"^One_\d+_\d+$";
+    private string fivePattern = @"^Five_(\d)+_(\d)+$";
+    private string onePattern = @"^One_(\d)+_(\d)+$";
 
     public InputActionReference triggerDown_Action;
     public InputActionReference triggerUp_Action;
@@ -43,10 +43,20 @@ public class AbacusController : MonoBehaviour
 
     void AbacusInit()
     {
-        //创建二维数组  
-        fiveAbacusArray = new int[9][];
-        oneAbacusArray = new int[9][];
-        sum = 0;
+       // 创建交错数组
+    fiveAbacusArray = new int[9][];
+    for (int i = 0; i < 9; i++)
+    {
+        fiveAbacusArray[i] = new int[2]; // 每个子数组有2个元素
+    }
+
+    oneAbacusArray = new int[9][];
+    for (int i = 0; i < 9; i++)
+    {
+        oneAbacusArray[i] = new int[5]; // 每个子数组有5个元素
+    }
+
+    sum = 0;
     }
 
     void XRDeviceinit()
@@ -78,6 +88,7 @@ public class AbacusController : MonoBehaviour
                     */
                     return -1;
                 }
+                Debug.Log(abacus.name + "不允许移动/1");
                 return 0;
             }
             if (fiveAbacusArray[draggableAbacus_x][draggableAbacus_y] == 1)
@@ -86,6 +97,7 @@ public class AbacusController : MonoBehaviour
                 {
                     return 1;
                 }
+                Debug.Log(abacus.name + "不允许移动/2");
                 return 0;
             }
         }
@@ -93,12 +105,13 @@ public class AbacusController : MonoBehaviour
         //对1值算珠
         if (draggableAbacus_Type == 1)
         {
-            if (oneAbacusArray[draggableAbacus_x][draggableAbacus_y] == 0)
+            if (oneAbacusArray[draggableAbacus_x][draggableAbacus_y] == 0)//**
             {
                 if (draggableAbacus_y == 1 || oneAbacusArray[draggableAbacus_x][draggableAbacus_y - 1] == 1)
                 {
                     return 1;
                 }
+                Debug.Log(abacus.name + "不允许移动/3");
                 return 0;
             }
             if (oneAbacusArray[draggableAbacus_x][draggableAbacus_y] == 1)
@@ -107,6 +120,7 @@ public class AbacusController : MonoBehaviour
                 {
                     return -1;
                 }
+                Debug.Log(abacus.name + "不允许移动/4");
                 return 0;
             }
         }
@@ -117,7 +131,7 @@ public class AbacusController : MonoBehaviour
 
     void MoveAbacusInit(GameObject abacus, Vector3 playerPosition, Vector3 oldPosition, Vector3 newPosition)
     {
-        int abacusMoveAllowed = AbacusMoveAllowed(abacus);
+        int abacusMoveAllowed = AbacusMoveAllowed(abacus);//*
         // 若该算珠不能合法移动，直接返回
         if (abacusMoveAllowed == 0)
         {
@@ -138,7 +152,7 @@ public class AbacusController : MonoBehaviour
         // 计算玩家位置到新位置的向量
         Vector3 playerToNew = newPosition - playerPosition;
 
-        Vector3 myRight = new Vector3(0.20599924f, 0f, -0.97855216f);
+        Vector3 myRight = new Vector3(0f, 0f, -1f);
 
         // 计算垂直方向的夹角
         float angleVertical = Vector3.SignedAngle(Vector3.ProjectOnPlane(playerToOld, myRight), Vector3.ProjectOnPlane(playerToNew, myRight), myRight);
@@ -151,6 +165,7 @@ public class AbacusController : MonoBehaviour
                 fiveAbacusArray[draggableAbacus_x][draggableAbacus_y] = 1;
                 sum += (int)(Math.Pow(10, draggableAbacus_x) * 5);
                 Debug.Log("当前算盘表示值为："+ sum);
+                dashBoard.text = sum.ToString();
             }
 
             if (draggableAbacus_Type == 1)
@@ -158,6 +173,7 @@ public class AbacusController : MonoBehaviour
                 oneAbacusArray[draggableAbacus_x][draggableAbacus_y] = 0;
                 sum -= (int)(Math.Pow(10, draggableAbacus_x) * 1);
                 Debug.Log("当前算盘表示值为：" + sum);
+                dashBoard.text = sum.ToString();
             }
 
             Debug.Log(abacus.name + "下移1格");
@@ -173,6 +189,7 @@ public class AbacusController : MonoBehaviour
                 fiveAbacusArray[draggableAbacus_x][draggableAbacus_y] = 0;
                 sum -= (int)(Math.Pow(10, draggableAbacus_x) * 5);
                 Debug.Log("当前算盘表示值为：" + sum);
+                dashBoard.text = sum.ToString();
             }
 
             if (draggableAbacus_Type == 1)
@@ -180,6 +197,7 @@ public class AbacusController : MonoBehaviour
                 oneAbacusArray[draggableAbacus_x][draggableAbacus_y] = 1;
                 sum += (int)(Math.Pow(10, draggableAbacus_x) * 1);
                 Debug.Log("当前算盘表示值为：" + sum);
+                dashBoard.text = sum.ToString();
             }
 
             Debug.Log(abacus.name + "上移1格");
@@ -219,9 +237,11 @@ public class AbacusController : MonoBehaviour
         if (!isMoving && !isDragging && Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit, Mathf.Infinity, abacusLayer))
         {
             //若按下trigger选中的为5值算珠物体
+            //Debug.Log("hit.collider.name="+hit.collider.name);
             Match match = Regex.Match(hit.collider.name, fivePattern);
             if (isPressed && match.Success)
             {
+                Debug.Log("匹配5值算珠"+hit.collider.name);
                 draggableAbacus_Type = 5;
                 // 提取匹配的数字部分
                 string xStr = match.Groups[1].Value;
@@ -229,14 +249,16 @@ public class AbacusController : MonoBehaviour
                 // 将提取的字符串转换为整数
                 int.TryParse(xStr, out draggableAbacus_x);
                 int.TryParse(yStr, out draggableAbacus_y);
-
+                Debug.Log("xStr="+xStr+",yStr="+yStr);
+                Debug.Log("draggableAbacus_x="+draggableAbacus_x+",draggableAbacus_y="+draggableAbacus_y);
                 draggableAbacusInit(hit.collider);
             }
 
             //若按下trigger选中的为1值算珠物体
             match = Regex.Match(hit.collider.name, onePattern);
-            if (isPressed && Regex.IsMatch(hit.collider.name, onePattern))
+            if (isPressed && match.Success)
             {
+                Debug.Log("匹配1值算珠:"+hit.collider.name);
                 draggableAbacus_Type = 1;
                 // 提取匹配的数字部分
                 string xStr = match.Groups[1].Value;
@@ -244,7 +266,8 @@ public class AbacusController : MonoBehaviour
                 // 将提取的字符串转换为整数
                 int.TryParse(xStr, out draggableAbacus_x);
                 int.TryParse(yStr, out draggableAbacus_y);
-
+                Debug.Log("xStr="+xStr+",yStr="+yStr);
+                Debug.Log("draggableAbacus_x="+draggableAbacus_x+",draggableAbacus_y="+draggableAbacus_y);
                 draggableAbacusInit(hit.collider);
             }
         }
@@ -254,20 +277,20 @@ public class AbacusController : MonoBehaviour
             //释放trigger移动物体
             if (!isPressed)
             {
-                Debug.Log("释放trigger移动物体");
+                //Debug.Log("释放trigger移动物体");
                 isDragging = false;
 
-                if (Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit1, Mathf.Infinity, abacusLayer))
+                if (Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit1, Mathf.Infinity, backgroundLayer))
                 {
                     dragEndPosition = hit1.point;
-                    MoveAbacusInit(draggableAbacus, rightController.position, dragStartPosition, dragEndPosition);
+                    MoveAbacusInit(draggableAbacus, rightController.position, dragStartPosition, dragEndPosition);//**
                 }
             }
         }
 
         if (isMoving)
         {
-            dashBoard.text = sum.ToString();
+            
             MoveUpdate(draggableAbacus);
         }
     }

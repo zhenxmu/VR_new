@@ -1108,6 +1108,17 @@
                 },
                 {
                     "name": "",
+                    "id": "33cfc285-9b4c-4015-9490-feed01e75da3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a46b49d0-0754-4dac-a9a5-a822e10751f2",
                     "path": "<XRController>{LeftHand}/{Primary2DAxis}",
                     "interactions": "Sector(directions=12,sweepBehavior=1),Sector(directions=2,sweepBehavior=2)",
@@ -1581,7 +1592,7 @@
                 {
                     "name": "TriggerDown",
                     "type": "Button",
-                    "id": "57553dfc-589b-438a-ba86-7a7c22cef06f",
+                    "id": "567a95e5-6a14-4217-b3ba-03b1edef1f01",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1590,7 +1601,7 @@
                 {
                     "name": "TriggerUp",
                     "type": "Button",
-                    "id": "a7c4009c-a1cb-4b6d-a6f6-02df9bb1a4a0",
+                    "id": "247d74a2-85df-4a7e-81f9-ca0fc7102dcb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1765,8 +1776,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0f9811ba-c96b-4ea4-8784-a2e61c0524fe",
-                    "path": "<XRController>{RightHand}/triggerButton",
+                    "id": "2ffd476d-c9ae-477d-970b-070a755d825a",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -1776,8 +1787,8 @@
                 },
                 {
                     "name": "",
-                    "id": "e9a33cc1-3705-4614-a496-f54a269a078f",
-                    "path": "<XRController>{RightHand}/triggerButton",
+                    "id": "0053f089-b46b-4b6d-9fbf-758c84cef6a1",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
@@ -2504,6 +2515,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "tdf",
+                    "type": "Button",
+                    "id": "46fa487d-e0c4-4c6e-a4d4-da444de67a7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2636,6 +2656,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pinch Gap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc88c7e3-2ce5-4d0b-8229-44f97cb90cdf",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "tdf",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
