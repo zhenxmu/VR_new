@@ -2515,6 +2515,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "tdf",
+                    "type": "Button",
+                    "id": "46fa487d-e0c4-4c6e-a4d4-da444de67a7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2647,6 +2656,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pinch Gap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc88c7e3-2ce5-4d0b-8229-44f97cb90cdf",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "tdf",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
