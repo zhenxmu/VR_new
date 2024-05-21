@@ -273,7 +273,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.xr.picoxr": {
-      "version": "file:D:/360安全浏览器下载/PICO Unity Integration SDK_250",
+      "version": "file:E:/Download/PICO Unity Integration SDK_250",
       "depth": 0,
       "source": "local",
       "dependencies": {
