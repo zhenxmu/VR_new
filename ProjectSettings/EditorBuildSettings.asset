@@ -20,15 +20,24 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Cockpit/CockpitScene.unity
     guid: b78a0ca5d851e4ddf993dcc6feab56d0
+  - enabled: 1
+    path: Assets/Scenes/VRmain.unity
+    guid: 6d86b90cbc322124d91cbc78733f20a5
   - enabled: 0
     path: Assets/Scenes/HuarongRoadGameScene.unity
     guid: 2ae04cea6e0fcb54f911743490fc21cb
   - enabled: 0
-    path: Assets/Scenes/VRmain.unity
-    guid: 6d86b90cbc322124d91cbc78733f20a5
-  - enabled: 1
     path: Assets/Samples/XR Interaction Toolkit/2.5.3/Starter Assets/DemoScene.unity
     guid: 319dafa5c80f29f428dc1e0d03f04177
+  - enabled: 1
+    path: Assets/Scenes/SceneI.unity
+    guid: 923c0b53496fc0e4b897d9f57444256f
+  - enabled: 1
+    path: Assets/Scenes/SceneII.unity
+    guid: b33292feba823cc41845304995002259
+  - enabled: 1
+    path: Assets/Scenes/SceneIII.unity
+    guid: 02687b02df06a6e4a83e0eea21d46591
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 290a6e6411d135049940bec2237b8938, type: 2}
     Unity.XR.PICO.LivePreview.Settings: {fileID: 11400000, guid: 35146c774eb495d4ea5b944ef7687c09, type: 2}
