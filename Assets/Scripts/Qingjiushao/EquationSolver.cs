@@ -17,6 +17,23 @@ public class EquationSolver : MonoBehaviour
     void Start()
 {
     UpdateButtonValuesRandomly();
+    GameObject globalBlackboard = GameObject.Find("@GlobalBlackboard");
+    if (globalBlackboard != null)
+    {
+        bb = globalBlackboard.GetComponent<GlobalBlackboard>();
+        if (bb != null)
+        {
+            bb.SetVariableValue("success", false);
+        }
+        else
+        {
+            Debug.LogError("Blackboard component not found on GlobalBlackboard");
+        }
+    }
+    else
+    {
+        Debug.LogError("GlobalBlackboard game object not found");
+    }
     bb.SetVariableValue("success", false);
     ShowInitialGuidance(); // 显示初始指导
     buttonUI1.onClick.AddListener(() => OnButtonClicked(buttonUI1));

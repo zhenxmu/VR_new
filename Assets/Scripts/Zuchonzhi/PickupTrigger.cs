@@ -16,6 +16,7 @@ public class PickupTrigger : MonoBehaviour
     private void Start()
     {
         interactionUI.SetActive(false); // Ensure the UI is not visible at start
+    
         bb.SetVariableValue("Isbookfinded",false);
     }
 
@@ -38,7 +39,7 @@ public class PickupTrigger : MonoBehaviour
         // This method should be called by the UI button's onClick event
         hasPickedUp = true; // Change the bool value to true
         interactionUI.SetActive(false); // Hide the interaction UI after picking up
-         bb.SetVariableValue("Isbookfinded",false);
+         bb.SetVariableValue("Isbookfinded",true);
         // Additional logic for picking up the item can be added here
         Debug.Log("物体已拾取"); // Log message for debugging
     }
