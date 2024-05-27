@@ -45,4 +45,8 @@ public class LoadScenesUtils : MonoBehaviour {
         originalPositionMain = position;
         originalRotationMain = rotation;
     }
+
+    public void toMainScene() {
+        LoadScene(mainSceneName);
+    }
 }
