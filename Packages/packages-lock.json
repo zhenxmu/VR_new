@@ -102,7 +102,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.pico.livepreview": {
-      "version": "file:F:/浏览器下载/PICO_Unity_LivePreview_Plugin",
+      "version": "file:D:/360安全浏览器下载/PICO Unity Live Preview Plugin-101",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -273,7 +273,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.xr.picoxr": {
-      "version": "file:F:/浏览器下载/PICO_Unity_Integration_SDK_250",
+      "version": "file:D:/360安全浏览器下载/PICO Unity Integration SDK_250",
       "depth": 0,
       "source": "local",
       "dependencies": {
