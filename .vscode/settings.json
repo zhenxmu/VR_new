@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "VRproject - new - 副本.sln"
+    "dotnet.defaultSolution": "VRproject - sub.sln"
 }
