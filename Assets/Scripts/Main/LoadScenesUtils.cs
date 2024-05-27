@@ -35,8 +35,8 @@ public class LoadScenesUtils : MonoBehaviour {
     }
 
     private static void LoadScene(string sceneName) {
-        SceneManager.LoadScene("IntermediateScene");
         nextSceneName = sceneName;
+        SceneManager.LoadScene("IntermediateScene");
     }
 
     // 保存主场景中的位置信息到静态类
