@@ -35,8 +35,8 @@ public class LoadScenesUtils : MonoBehaviour {
     }
 
     private static void LoadScene(string sceneName) {
-        SceneManager.LoadScene("IntermediateScene");
         nextSceneName = sceneName;
+        SceneManager.LoadScene("IntermediateScene");
     }
 
     // 保存主场景中的位置信息到静态类
@@ -44,5 +44,9 @@ public class LoadScenesUtils : MonoBehaviour {
         Debug.Log("保存主场景位置信息 "+position+" "+rotation);
         originalPositionMain = position;
         originalRotationMain = rotation;
+    }
+
+    public void toMainScene() {
+        LoadScene(mainSceneName);
     }
 }

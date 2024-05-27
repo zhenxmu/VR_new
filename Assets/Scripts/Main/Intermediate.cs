@@ -12,30 +12,29 @@ public class Intermediate : MonoBehaviour {
     private Slider slider;
     private AsyncOperation async = null;
  
+    float timer = 0f;
+    float waitTime = 3f; // 模拟加载需要的时间
+
     private void Start() {
         slider = GetComponent<Slider>();
         StartCoroutine("LoadScene");
     }
  
     IEnumerator LoadScene() {
-        // 异步加载下一个
         async = SceneManager.LoadSceneAsync(LoadScenesUtils.nextSceneName);
-        // 不允许显示
         async.allowSceneActivation = false;
-        while (!async.isDone) {
-            if (async.progress < 0.9f)
-                progressValue = async.progress;
-            else
-                progressValue = 1.0f;
- 
-            slider.value = progressValue;
-            // progress.text = (int)(slider.value * 100) + " %";
- 
-            if (progressValue >= 0.9) {
-                Debug.Log("异步场景加载完成，执行跳转");
+
+        while (!async.isDone || timer < waitTime) {
+            timer += Time.deltaTime;
+            float progress = Mathf.Clamp01(timer / waitTime); // 计算加载进度
+            slider.value = progress;
+            if (progress >= 0.99f && async.progress >= 0.9f) {
+                Debug.Log("异步场景加载完成，执行跳转"+LoadScenesUtils.nextSceneName);
+                // 当加载完成或时间到达后，允许切换场景
                 async.allowSceneActivation = true;
             }
             yield return null;
         }
+
     }
 }
