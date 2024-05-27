@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneIII.unity
     guid: 02687b02df06a6e4a83e0eea21d46591
+  - enabled: 1
+    path: Assets/Scenes/IntermediateScene.unity
+    guid: 9defd3c3129433a42a40cc10d9f1671e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 290a6e6411d135049940bec2237b8938, type: 2}
     Unity.XR.PICO.LivePreview.Settings: {fileID: 11400000, guid: 35146c774eb495d4ea5b944ef7687c09, type: 2}
