@@ -423,7 +423,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
                 }
             }
         }
-
+        public void SetSmoothMotionEnabled(bool isEnabled)
+        {
+          smoothMotionEnabled = isEnabled;
+        }
         void UpdateLocomotionActions()
         {
             // Disable/enable Teleport and Turn when Move is enabled/disabled.
