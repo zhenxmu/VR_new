@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class MenuController : MonoBehaviour
 {
+    public Transform leftController; // Pico ×óÊÖ±úµÄ Transform
+    public UnityEngine.XR.InputDevice deviceLeft;
+    bool allisshow = false;
+    public GameObject allobject;
+
     //public GameObject Gmenue;
     public GameObject menubt;
     public GameObject mapbt;
@@ -22,9 +28,13 @@ public class MenuController : MonoBehaviour
     bool mapisshow = false;
     bool helpisshow = false;
     bool sliderisshow = false;
+
+    bool menubtnIsDown = false;
     // Use this for initialization
     void Start()
     {
+        deviceLeft = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
         menucontext.SetActive(menuisshow);
         btn1 = menubt.GetComponent<Button>();
         btn1.onClick.AddListener(delegate ()
@@ -84,11 +94,18 @@ public class MenuController : MonoBehaviour
                 helpcontext.SetActive(helpisshow);
             }
         });
+
+        allobject.SetActive(allisshow);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (deviceLeft.TryGetFeatureValue(CommonUsages.menuButton, out menubtnIsDown) && menubtnIsDown)
+        {
+            allisshow = !allisshow;
+            allobject.SetActive(allisshow);
+        }
 
     }
 }

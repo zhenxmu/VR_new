@@ -781,6 +781,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "MenuButtonDown",
+                    "type": "Button",
+                    "id": "c6e2e90c-7ace-40b4-a932-8ec39ef03f7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -946,6 +955,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3326bf85-9a99-4e91-b0b4-7d7799f1597e",
+                    "path": "<XRController>{LeftHand}/{MenuButton}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuButtonDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

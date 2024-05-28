@@ -16004,6 +16004,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4b1c5834f40a04a9a8b690f0879511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftController: {fileID: 1583916736}
+  allobject: {fileID: 923666759}
   menubt: {fileID: 1654590943}
   mapbt: {fileID: 767397519}
   helpbt: {fileID: 1472497024}
@@ -19585,7 +19587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8ff65dbcda6b984c995a7ffc987e2cb, type: 2}
   m_sharedMaterial: {fileID: 6891407221852311081, guid: b8ff65dbcda6b984c995a7ffc987e2cb, type: 2}
@@ -34789,36 +34791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9f82377aeb9704193bd866d119aaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenFade: 0
-  eyeTracking: 0
-  trackingMode: 0
-  sharpeningMode: 0
-  sharpeningEnhance: 0
-  faceTracking: 0
-  lipsyncTracking: 0
-  lateLatching: 0
-  latelatchingDebug: 0
-  bodyTracking: 0
-  foveationLevel: -1
-  adaptiveResolution: 0
-  eyeFoveationLevel: -1
-  foveatedRenderingMode: 0
-  openMRC: 1
-  foregroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  backLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  backgroundCamObj: {fileID: 0}
-  foregroundCamObj: {fileID: 0}
-  mrcBackgroundRT: {fileID: 0}
-  mrcForegroundRT: {fileID: 0}
-  adaptiveResolutionPowerSetting: 1
-  minEyeTextureScale: 0.7
-  maxEyeTextureScale: 1.26
-  enableSuperResolution: 0
-  useRecommendedAntiAliasingLevel: 1
 --- !u!114 &1758818554
 MonoBehaviour:
   m_ObjectHideFlags: 0
