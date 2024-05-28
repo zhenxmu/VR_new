@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14703594, g: 0.36398482, b: 0.57992315, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 74009397}
   m_Layer: 0
   m_Name: Directional Light (4)
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1014,7 +1014,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.55
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5621,11 +5621,11 @@ GameObject:
   - component: {fileID: 385895883}
   m_Layer: 0
   m_Name: Directional Light (8)
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &385895883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5661,7 +5661,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.15
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6541,7 +6541,7 @@ GameObject:
   - component: {fileID: 434518659}
   m_Layer: 0
   m_Name: Directional Light (2)
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6581,7 +6581,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8576,7 +8576,7 @@ GameObject:
   - component: {fileID: 554556837}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8616,7 +8616,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.28
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -15447,11 +15447,11 @@ GameObject:
   - component: {fileID: 872344982}
   m_Layer: 0
   m_Name: Directional Light (5)
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &872344982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15487,7 +15487,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.22
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -36991,7 +36991,7 @@ GameObject:
   - component: {fileID: 1805820739}
   m_Layer: 0
   m_Name: Directional Light (6)
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37031,7 +37031,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.56
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -37392,11 +37392,11 @@ GameObject:
   - component: {fileID: 1820133668}
   m_Layer: 0
   m_Name: Directional Light (9)
-  m_TagString: Untagged
+  m_TagString: SceneLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1820133668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37432,7 +37432,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9547169, g: 0.9476011, b: 0.88446414, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.05
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -47516,7 +47516,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
