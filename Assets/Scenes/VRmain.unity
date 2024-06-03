@@ -12302,7 +12302,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e735ad371820ee44c9188c54969b0659, type: 2}
     - target: {fileID: 2821778127046934749, guid: a9ec672b5b56d2b47a3f8faa64a38b62, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821778127046934749, guid: a9ec672b5b56d2b47a3f8faa64a38b62, type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27c5ee060488dc04794a0f724839c6cc, type: 2}
+    - target: {fileID: 2821778127046934749, guid: a9ec672b5b56d2b47a3f8faa64a38b62, type: 3}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 27c5ee060488dc04794a0f724839c6cc, type: 2}
     - target: {fileID: 3563975065465795062, guid: a9ec672b5b56d2b47a3f8faa64a38b62, type: 3}
@@ -22435,6 +22443,8 @@ MonoBehaviour:
     m_Bits: 262144
   triggerDown_Action: {fileID: -8562885859530917769, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   triggerUp_Action: {fileID: 5388918904577605372, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  NormalMaterial: {fileID: 2100000, guid: f814a4bde6e0408489e2386b23693dee, type: 2}
+  XRayMaterial: {fileID: 2100000, guid: bf2ebb19a2af8994cbfa467db5d0b88d, type: 2}
 --- !u!1 &1175347527
 GameObject:
   m_ObjectHideFlags: 0
@@ -38666,7 +38676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455374203135982647, guid: 6e54848bf7dc846439b1061887159630, type: 3}
       propertyPath: m_Name
-      value: One_14
+      value: One_1_4
       objectReference: {fileID: 0}
     - target: {fileID: 8455374203135982647, guid: 6e54848bf7dc846439b1061887159630, type: 3}
       propertyPath: m_Layer

@@ -28,6 +28,9 @@ public class HuarongRoadGameController : MonoBehaviour
     public UnityEngine.XR.InputDevice deviceLeft;
     public UnityEngine.XR.InputDevice deviceRight;
 
+    private GameObject hitObject;
+    private Color originalColor;
+
     private int[,] chessBoardArray = new int[5, 4] { { 1, 0, 0, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 } };
 
     //0-3£º×ä1-4£¬4£ºÂí³¬£¬5£ºÕÅ·É£¬6£º»ÆÖÒ£¬7£ºÕÔÔÆ£¬8£º¹ØÓð£¬9£º²Ü²Ù
@@ -240,7 +243,6 @@ public class HuarongRoadGameController : MonoBehaviour
             Debug.Log("trigger is pressed.");
             isPressed = true;
         }
-       
 
         if (!isMoving && !isDragging && Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit, Mathf.Infinity, chessPieceLayer))
         {

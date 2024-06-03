@@ -41,6 +41,10 @@ public class AbacusController : MonoBehaviour
 
     public UnityEngine.XR.InputDevice deviceRight;
 
+    public Material NormalMaterial;
+    public Material XRayMaterial;
+    private GameObject XRayObject;
+
     void AbacusInit()
     {
        // 创建交错数组
@@ -234,7 +238,35 @@ public class AbacusController : MonoBehaviour
             isPressed = true;
         }
 
-        if (!isMoving && !isDragging && Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit, Mathf.Infinity, abacusLayer))
+        if(Physics.Raycast(rightController.position, rightController.forward, out RaycastHit hit, Mathf.Infinity, abacusLayer))
+        {
+            if (XRayObject == null)
+            {
+                XRayObject = hit.collider.gameObject;
+                Renderer renderer = XRayObject.GetComponent<Renderer>();
+                renderer.material = XRayMaterial;
+            }
+            else if (XRayObject != hit.collider.gameObject)
+            {
+                Renderer renderer = XRayObject.GetComponent<Renderer>();
+                renderer.material = NormalMaterial;
+
+                XRayObject = hit.collider.gameObject;
+                renderer = XRayObject.GetComponent<Renderer>();
+                renderer.material = XRayMaterial;
+            }
+        }
+        else
+        {
+            if (XRayObject != null)
+            {
+                Renderer renderer = XRayObject.GetComponent<Renderer>();
+                renderer.material = NormalMaterial;
+            }
+        }
+
+
+        if (!isMoving && !isDragging && Physics.Raycast(rightController.position, rightController.forward, out hit, Mathf.Infinity, abacusLayer))
         {
             //若按下trigger选中的为5值算珠物体
             //Debug.Log("hit.collider.name="+hit.collider.name);
