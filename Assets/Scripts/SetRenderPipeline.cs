@@ -3,18 +3,21 @@ using UnityEngine.Rendering;
 
 public class SetRenderPipeline : MonoBehaviour
 {
-   public RenderPipelineAsset[] qualityLevelPipelines;
+    public RenderPipelineAsset pipelineAsset; // 单个渲染管线资产
 
     void Start()
     {
-        int currentQualityLevel = QualitySettings.GetQualityLevel();
-        if (qualityLevelPipelines.Length > currentQualityLevel && qualityLevelPipelines[currentQualityLevel] != null)
+        if (pipelineAsset != null)
         {
-            GraphicsSettings.renderPipelineAsset = qualityLevelPipelines[currentQualityLevel];
+
+            // 设置当前质量级别的渲染管线
+            QualitySettings.renderPipeline = pipelineAsset;
+
+            Debug.Log("Applied Render Pipeline: " + pipelineAsset.name);
         }
         else
         {
-            Debug.LogError("No RenderPipelineAsset assigned for the current quality level or array out of index.");
+            Debug.LogError("No RenderPipelineAsset assigned.");
         }
     }
 }

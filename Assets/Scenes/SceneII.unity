@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 59573b088aaea0442bf29e0a0e9d1339, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.14647764, g: 0.36704805, b: 0.57329005, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,7 +171,7 @@ RectTransform:
   m_Father: {fileID: 1474948961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6735,7 +6735,7 @@ RectTransform:
   m_Father: {fileID: 833260845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.3, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9293,8 +9293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29343e80411d00645a4184f04d803592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qualityLevelPipelines:
-  - {fileID: 11400000, guid: f4c4da3139a0b59458e4b4db55ccbe11, type: 2}
+  pipelineAsset: {fileID: 11400000, guid: f4c4da3139a0b59458e4b4db55ccbe11, type: 2}
 --- !u!1 &1020442647
 GameObject:
   m_ObjectHideFlags: 0
@@ -10072,8 +10071,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 406309894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.3, y: 0}
+  m_AnchorMax: {x: 0.3, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14471,7 +14470,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -181}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1694040235
 MonoBehaviour:
@@ -16829,7 +16828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1969300018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16856,6 +16855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4b1c5834f40a04a9a8b690f0879511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftController: {fileID: 0}
+  OpenMenu: {fileID: 4492375090449724572, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  allobject: {fileID: 0}
   menubt: {fileID: 1729355497}
   mapbt: {fileID: 1768311735}
   helpbt: {fileID: 562637426}
