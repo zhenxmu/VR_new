@@ -4638,8 +4638,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 496828332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.3, y: 0}
+  m_AnchorMax: {x: 0.3, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10264,8 +10264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29343e80411d00645a4184f04d803592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qualityLevelPipelines:
-  - {fileID: 11400000, guid: f4c4da3139a0b59458e4b4db55ccbe11, type: 2}
+  pipelineAsset: {fileID: 11400000, guid: f4c4da3139a0b59458e4b4db55ccbe11, type: 2}
 --- !u!1 &856538111
 GameObject:
   m_ObjectHideFlags: 0
@@ -19265,7 +19264,7 @@ RectTransform:
   m_Father: {fileID: 940165279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.3, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19633,7 +19632,7 @@ RectTransform:
   m_Father: {fileID: 344753241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21150,7 +21149,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -181}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1792059558
 MonoBehaviour:
@@ -24427,7 +24426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2092003041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24455,6 +24454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftController: {fileID: 0}
+  OpenMenu: {fileID: 4492375090449724572, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   allobject: {fileID: 0}
   menubt: {fileID: 1443754640}
   mapbt: {fileID: 1757875265}
